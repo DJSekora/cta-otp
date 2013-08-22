@@ -100,8 +100,9 @@ public class WebMapService extends RoutingResource {
             LOG.debug("resulting raster dimensions are {}w x {}h", width, height);
         }
 
-        RoutingRequest reqA = this.buildRequest(0);
-        RoutingRequest reqB = this.buildRequest(1);
+        RoutingRequest sptRequest[] = new RoutingRequest[2]; 
+        sptRequest[0] = this.buildRequest(0);
+        sptRequest[1] = this.buildRequest(1);
         
         LOG.debug("params {}", uriInfo.getQueryParameters());
         LOG.debug("layers = {}", layers);
@@ -133,7 +134,7 @@ public class WebMapService extends RoutingResource {
             reqB = null;
         }
         
-        return renderer.getResponse(tileRequest, reqA, reqB, renderRequest);
+        return renderer.getResponse(tileRequest, sptRequest, renderRequest);
     }
 
     /** Yes, this is loading a static capabilities response from a file 
