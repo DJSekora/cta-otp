@@ -100,7 +100,7 @@ public class WebMapService extends RoutingResource {
             LOG.debug("resulting raster dimensions are {}w x {}h", width, height);
         }
 
-        RoutingRequest sptRequest[] = new RoutingRequest[2]; 
+        RoutingRequest sptRequest[] = new RoutingRequest[fromPlace.length]; 
         sptRequest[0] = this.buildRequest(0);
         sptRequest[1] = this.buildRequest(1);
         
@@ -110,7 +110,7 @@ public class WebMapService extends RoutingResource {
         LOG.debug("version = {}", version);
         LOG.debug("srs = {}", srs.getName());
         LOG.debug("bbox = {}", bbox);
-        LOG.debug("search time = {}", reqA.getDateTime());
+        LOG.debug("search time = {}", sptRequest[0].getDateTime());
         
 //        SPTRequest sptRequestA, sptRequestB = null;
 //        if (originLat == null && originLon == null) {
@@ -127,12 +127,6 @@ public class WebMapService extends RoutingResource {
         Layer layer = layers.get(0);
         Style style = styles.get(0);
         RenderRequest renderRequest = new RenderRequest(format, layer, style, transparent, timestamp);
-        
-        if (layer != Layer.DIFFERENCE) {
-//            noPurple = req.clone();
-//            noPurple.setBannedRoutes("Test_Purple");
-            reqB = null;
-        }
         
         return renderer.getResponse(tileRequest, sptRequest, renderRequest);
     }
