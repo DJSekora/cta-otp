@@ -100,7 +100,7 @@ public class WebMapService extends RoutingResource {
             LOG.debug("resulting raster dimensions are {}w x {}h", width, height);
         }
 
-        RoutingRequest sptRequest[] = new RoutingRequest[fromPlace.length]; 
+        RoutingRequest sptRequest[] = new RoutingRequest[fromPlace.length()]; 
         sptRequest[0] = this.buildRequest(0);
         sptRequest[1] = this.buildRequest(1);
         
